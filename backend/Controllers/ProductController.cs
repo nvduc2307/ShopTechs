@@ -1,3 +1,4 @@
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using UnitOfWorks;
 
@@ -15,8 +16,16 @@ namespace Controllers
         [HttpGet]
         [Route("/api/products")]
         public async Task<ActionResult> GetProducts() {
-            var products = await _unitOfWork.IProductRepository.FetchData();
-            return Ok(products);
+            try
+            {
+                var products = await _unitOfWork.IProductRepository.FetchData();
+                Console.WriteLine(products.Count);
+                return Ok(products);
+            }
+            catch (System.Exception)
+            {
+                return Ok(HttpStatusCode.InternalServerError);
+            }
         }
     }
 }

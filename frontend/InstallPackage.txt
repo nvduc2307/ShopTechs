@@ -1,0 +1,4 @@
+dotnet new mvc -f net7.0
+npm i node-sass --save-dev
+dotnet add package Newtonsoft.Json
+dotnet add package RestSharp --version 111.4.1

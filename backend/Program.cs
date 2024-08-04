@@ -1,8 +1,10 @@
+using System.Runtime.InteropServices;
 using Databases;
 using IRepositories;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using UnitOfWorks;
+using Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 var configuration = builder.Configuration;
-var connectionString = configuration.GetConnectionString("mysql");
+var connectionString = OSPlatform.Windows.IsPCType() 
+? configuration.GetConnectionString("mysql")
+:configuration.GetConnectionString("mysqlMac");
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
