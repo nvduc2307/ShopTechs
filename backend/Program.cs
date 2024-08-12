@@ -16,6 +16,7 @@ var connectionString = OSPlatform.Windows.IsPCType()
 ? configuration.GetConnectionString("mysql")
 :configuration.GetConnectionString("mysqlMac");
 
+builder.ConfigAuthentication();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -26,6 +27,7 @@ builder.Services.AddDbContext<MainDbContext>(options => {
 
 //add services
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
@@ -38,6 +40,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

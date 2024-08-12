@@ -8,11 +8,15 @@ namespace UnitOfWorks
         public MainDbContext MainDbContext{ get; }
         public IProductRepository IProductRepository { get; }
 
+        public IUserRepository IUserRepository {get;}
+
         public UnitOfWork(MainDbContext mainDbContext,
-        IProductRepository iProductRepository)
+        IProductRepository iProductRepository,
+        IUserRepository iUserRepository)
         {
             MainDbContext = mainDbContext;
             IProductRepository = iProductRepository;
+            IUserRepository = iUserRepository;
         }
     }
 }

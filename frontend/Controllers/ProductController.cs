@@ -13,5 +13,11 @@ namespace Controllers
             _configuration = configuration;
             _urlHost = _configuration["UrlHost"] ?? "http://localhost:8080";
         }
+
+        [HttpGet]
+        [Route("/products")]
+        public IActionResult Index() {
+            return View("index");
+        }
     }
 }

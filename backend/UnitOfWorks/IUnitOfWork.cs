@@ -6,5 +6,6 @@ namespace UnitOfWorks
     public interface IUnitOfWork {
         public MainDbContext MainDbContext{ get; }
         public IProductRepository IProductRepository{ get; }
+        public IUserRepository IUserRepository { get; }
     }
 }
